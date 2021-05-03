@@ -21,6 +21,13 @@ public class PersonaController {
 	@Autowired
 	PersonaService personaService;
 	
+	@RequestMapping("/")
+	public String personasinicio(Model model) {
+		
+		return "index.jsp";
+		
+	}
+	
 	@RequestMapping("/personas")
 	public String personas(@RequestParam(value="rut") String rut,
 			@RequestParam(value="nombre") String nombre,
