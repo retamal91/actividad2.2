@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.everis.actividad.models.Persona;
 import com.everis.actividad.services.PersonaService;
+import com.everis.actividad.util.Validaciones;
 
 @Controller
 public class PersonaController {
@@ -21,19 +22,33 @@ public class PersonaController {
 	@Autowired
 	PersonaService personaService;
 	
+	@RequestMapping("/")
+	public String personasinicio(Model model) {
+		
+		return "index.jsp";
+		
+	}
+	
 	@RequestMapping("/personas")
 	public String personas(@RequestParam(value="rut") String rut,
 			@RequestParam(value="nombre") String nombre,
 			@RequestParam(value="apellido") String apellido,
 			@RequestParam(value="email")String email,Model model){
 		
-		Persona persona = new Persona();
-		persona.setRut(rut);
-		persona.setNombre(nombre);
-		persona.setApellido(apellido);
-		persona.setEmail(email);
+		boolean rutValido = false;
 		
-		persona = personaService.savePersona(persona);
+		Persona persona = new Persona();
+		if (Validaciones.validarRut(rut)) {
+			persona.setRut(rut);
+			persona.setNombre(nombre);
+			persona.setApellido(apellido);
+			persona.setEmail(email);
+			
+			persona = personaService.savePersona(persona);
+		}else {
+			
+			model.addAttribute("rutvalido", rutValido);
+		}
 		
 		List<Persona> personas_lista = personaService.allPersonas();
 		model.addAttribute("personas", personas_lista);

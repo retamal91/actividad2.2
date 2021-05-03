@@ -16,66 +16,54 @@
     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
   </li>
 </ul>
-	<div>
-		<h2>Ingrese información</h2>
-		<form action="/personas" method="POST">
-			<label for="rut">Rut: </label>
-			<input type="text" id="rut" name="rut">
-			<label for="nombre">Nombre: </label>
-			<input type="text" id="nombre" name="nombre">
-			<label for="apellido">Apellido: </label>
-			<input type="text" id="apellido" name="apellido">
-			<label for="email">Email: </label>
-			<input type="text" id="email" name="email">
-			<input type="submit" value="enviar">
-		</form>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well well-sm">
-                <form class="form-horizontal" method="post"  action="/personas" >
-                    <fieldset>
-                        <legend class="text-center header">Agregar persona</legend>
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="rut" name="rut" type="text" placeholder="Rut" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="apellido" name="apellido" type="text" placeholder="apellido" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="email" name="email" type="text" placeholder="Email" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-		<br>
-		<hr>
+<div class="row">
+		<div class="col-sm-6">
+		<div class="container">
+		    <div class="row">
+		        <div class="col-md-12">
+		            <div class="well well-sm">
+		                <form class="form-horizontal" method="post"  action="/personas" >
+		                    <fieldset>
+		                        <legend class="text-center header">Agregar persona</legend>
+		                        <div class="form-group">
+		                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+		                            <div class="col-md-8">
+		                                <input id="rut" name="rut" type="text" placeholder="Rut" class="form-control">
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+		                            <div class="col-md-8">
+		                                <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control">
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+		                            <div class="col-md-8">
+		                                <input id="apellido" name="apellido" type="text" placeholder="apellido" class="form-control">
+		                            </div>
+		                        </div>
 		
-		<table>
+		                        <div class="form-group">
+		                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+		                            <div class="col-md-8">
+		                                <input id="email" name="email" type="text" placeholder="Email" class="form-control">
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <div class="col-md-12 text-center">
+		                                <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+		                            </div>
+		                        </div>
+		                    </fieldset>
+		                </form>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>	
+	<div class="col-sm-6">
+		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>Rut </th>
@@ -87,16 +75,17 @@
 			</thead>
 			<tbody>
 				<c:forEach var="persona"  items="${personas}">
-					<tr>
-						<td><c:out value="${persona.rut}" /> </td>
-						<td><c:out value="${persona.nombre}" /> </td>
-						<td><c:out value="${persona.apellido}" /> </td>
-						<td><c:out value="${persona.email}" /> </td>
-						<td><a href="/persona/editar/${persona.id}" class="btn btn-info" role="button" data-bs-toggle="button">Editar</a><a href="/persona/eliminar/${persona.id}"  class="btn btn-danger" role="button" data-bs-toggle="button"></a></td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td><c:out value="${persona.rut}" /> </td>
+					<td><c:out value="${persona.nombre}" /> </td>
+					<td><c:out value="${persona.apellido}" /> </td>
+					<td><c:out value="${persona.email}" /> </td>
+					<td><a href="/personas/editar/${persona.id}" class="btn btn-info" role="button" data-bs-toggle="button">Editar</a><a href="/personas/eliminar/${persona.id}" style="margin-left: 8px;" class="btn btn-danger" role="button" data-bs-toggle="button" >Eliminar</a></td>
+				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
-	</div>
+	</div>	
+</div>	
 </body>
 </html>
