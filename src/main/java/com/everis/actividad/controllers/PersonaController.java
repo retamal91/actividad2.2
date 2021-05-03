@@ -37,9 +37,10 @@ public class PersonaController {
 			@RequestParam(value="email")String email,Model model){
 		
 		boolean rutValido = false;
+		boolean correoValido = false;
 		
 		Persona persona = new Persona();
-		if (Validaciones.validarRut(rut)) {
+		if (Validaciones.validarRut(rut) && Validaciones.validarCorreo(email)) {
 			persona.setRut(rut);
 			persona.setNombre(nombre);
 			persona.setApellido(apellido);
@@ -49,6 +50,7 @@ public class PersonaController {
 		}else {
 			
 			model.addAttribute("rutvalido", rutValido);
+			model.addAttribute("correovalido", correoValido);
 		}
 		
 		List<Persona> personas_lista = personaService.allPersonas();
