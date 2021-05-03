@@ -24,7 +24,8 @@ public class PersonaController {
 	
 	@RequestMapping("/")
 	public String personasinicio(Model model) {
-		
+		List<Persona> personas_lista = personaService.allPersonas();
+		model.addAttribute("personas", personas_lista);
 		return "index.jsp";
 		
 	}
@@ -68,7 +69,7 @@ public class PersonaController {
 		return "editar.jsp";
 	}
 	
-	@RequestMapping("/personas/actualizar/")
+	@RequestMapping("/persona/actualizar/")
 	public String actualizarPersona(@Valid @ModelAttribute("persona") Persona persona) {
 		personaService.actualizarPersona(persona);
 		return "redirect:/";
