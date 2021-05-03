@@ -1,5 +1,10 @@
 package com.everis.actividad.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+
 public class Validaciones {
 
 	
@@ -26,6 +31,28 @@ public class Validaciones {
 	    } catch (Exception e) {
 	    }
 	    return validacion;
+	};
+	
+	public static  boolean validarCorreo(String correo) {
+		
+		boolean correoValido = false;
+		
+        // Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+ 
+
+        Matcher mather = pattern.matcher(correo);
+ 
+        if (mather.find() == true) {
+        	correoValido = true;
+        } else {
+        	correoValido = false;
+        }
+        
+        return correoValido;
+		
 	}
 	
 }
